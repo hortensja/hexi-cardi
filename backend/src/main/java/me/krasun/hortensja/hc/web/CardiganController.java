@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.krasun.hortensja.hc.web.logic.CardiganService;
 import me.krasun.hortensja.hc.web.req.CardiganRequest;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/cardigan")
+@Slf4j
 public class CardiganController {
 
     private final CardiganService cardiganService;
@@ -37,7 +39,7 @@ public class CardiganController {
             f = new File("output.png");
             ImageIO.write(img, "png", f);
         } catch (IOException e) {
-            System.out.println("Error: " + e);
+            log.error("Error: " + e);
         }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(img, "png", baos);
